@@ -8,7 +8,7 @@ public class VirtualPet {
     private int months;
     private int years;
 
-    public VirtualPet(name){
+    public VirtualPet(String name){
         this.name = name;
         weight = 5;
     }
@@ -20,8 +20,10 @@ public class VirtualPet {
                 "\n Weight: " + weight + "g\n Age: " + months + " months and " + years +" years";
     }
     public void feed(){
-        energyLevel++;
-        weight ++;
+        if (energyLevel>=0 && energyLevel<=10){
+            energyLevel++;
+            weight ++;
+        }
     }
     public int getEnergyLevel(){
         return energyLevel;
@@ -30,13 +32,18 @@ public class VirtualPet {
         return happynessLevel;
     }
     public void play(){
-        if(happynessLevel>=0 || happynessLevel <=10 && weight > 5){
-            happynessLevel++;
+        if(weight > 5){
+            if(happynessLevel>=0 && happynessLevel <=10){
+                happynessLevel++;
+            }
             weight--;
+        }
+        else if(happynessLevel>=0 && happynessLevel <=10){
+            happynessLevel++;
         }
     }
     public void updateStatus(){
-        if(happynessLevel>=0 || happynessLevel <=10 && energyLevel>=0 || energyLevel <=10){
+        if(happynessLevel>=0 && happynessLevel <=10 && energyLevel>=0 || energyLevel <=10){
             energyLevel--;
             happynessLevel--;
             months++;
