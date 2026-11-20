@@ -1,56 +1,65 @@
-// Part A
-
 public class VirtualPet {
     private String name;
-    private int weight;
     private int energyLevel;
-    private int happynessLevel;
-    private int months;
-    private int years;
+    private int happinessLevel;
+    private int weight;
+    private int ageYears;
+    private int ageMonths;
 
-    public VirtualPet(String name){
-        this.name = name;
+    public VirtualPet(String petName) {
+        name = petName;
+        energyLevel = 0;
+        happinessLevel = 0;
         weight = 5;
+        ageYears = 0;
+        ageMonths = 0;
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    public String toString(){
-        return name+"'s Information:\n Energy:" + energyLevel +"\n Happiness: " + happynessLevel +
-                "\n Weight: " + weight + "g\n Age: " + months + " months and " + years +" years";
-    }
-    public void feed(){
-        if (energyLevel>=0 && energyLevel<=10){
-            energyLevel++;
-            weight ++;
-        }
-    }
-    public int getEnergyLevel(){
+
+    public int getEnergyLevel() {
         return energyLevel;
     }
-    public int getHappinessLevel(){
-        return happynessLevel;
+
+    public int getHappinessLevel() {
+        return happinessLevel;
     }
-    public void play(){
-        if(weight > 5){
-            if(happynessLevel>=0 && happynessLevel <=10){
-                happynessLevel++;
-            }
+
+    public void feed() {
+        if (energyLevel < 10) {
+            energyLevel++;
+        }
+        weight++;
+    }
+
+    public void play() {
+        if (happinessLevel < 10) {
+            happinessLevel++;
+        }
+        if (weight > 5) {
             weight--;
         }
-        else if(happynessLevel>=0 && happynessLevel <=10){
-            happynessLevel++;
+    }
+
+    public void updateStatus() {
+        if (happinessLevel > 0) {
+            happinessLevel--;
+        }
+        if (energyLevel > 0) {
+            energyLevel--;
+        }
+
+        ageMonths++;
+        if (ageMonths == 12) {
+            ageYears++;
+            ageMonths = 0;
         }
     }
-    public void updateStatus(){
-        if(happynessLevel>=0 && happynessLevel <=10 && energyLevel>=0 || energyLevel <=10){
-            energyLevel--;
-            happynessLevel--;
-            months++;
-            if(months>11){
-                months = months-12;
-                years++;
-            }
-        }
+
+    public String toString() {
+        return name + "'s Information:\n"+ "Energy: " + energyLevel + "\n" + "Happiness: " + happinessLevel + "\n"
+                + "Weight: " + weight + "g\n" + "Age: " + ageMonths + " months and " + ageYears + " years";
     }
 }
